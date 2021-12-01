@@ -1,0 +1,2 @@
+#### Vinylbase 1.0 ####This application was developed in Python with Django framework and it makes use of Bootstrap 4. Please install all the required packages, listed in requirements.txt file.####This app is actually my personal LPs collection. It is also meant to be a simple example of what can be done in Django with not many lines of code.
+####The application was developed for educational purposes and personal interest.####©ÊCopyright Nikita Volkov 2021
