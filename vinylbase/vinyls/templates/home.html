@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+<!-- Define the block-content to be loaded into base.html template -->
+{% block content %}
+
+    <!-- Set up the grid -->
+    <div class="home-container row">
+        {% for vinyl in vinyls %}
+
+            <!-- Create the bootstrap-grid -->
+            <div class="about-left col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+
+                <!-- Create the home tile -->
+                <div class="home-tile">
+
+                    <a href="{% url 'details' vinyl.id %}">
+
+                        <!-- Show the cover picture -->
+                        {% if vinyl.cover %}
+                            <div class="text-center">
+                                <img src="{{ vinyl.cover.url }}" alt="Cover for {{ vinyl.album }}" width="150" height="150">
+                            </div>
+                        {% endif %}
+
+                        <!-- Show an anchor tab with the album name -->
+                        <h4 class="home-album text-center">{{ vinyl.album|capfirst }}</h4>
+
+                        <!-- Show some other info about the vinyl -->
+                        <p class="home-info">Artist: {{ vinyl.artist }}</p>
+                        <p class="home-info">Label: {{ vinyl.label }}</p>
+                        {% if vinyl.original_year %}
+                            <p class="home-info">Year: {{ vinyl.original_year }}</p>
+                        {% endif %}
+
+                    </a>
+
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

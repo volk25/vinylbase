@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+<!-- Define the block-content to be loaded into base.html template -->
+{% block content %}
+
+    <!-- Create the vinyl details -->
+    <div class="container">
+
+        <!-- Create the details tile -->
+        <div class="details-tile">
+
+            <!-- Show the cover picture -->
+            {% if vinyl.cover %}
+                <div class="text-center">
+                    <img src="{{ vinyl.cover.url }}" alt="Cover for {{ vinyl.album }}" width="400" height="400">
+                </div>
+            {% endif %}
+
+            <!-- Show the main properties of the vinyl -->
+            <h3 class="details-album">Album: {{ vinyl.album|capfirst }}</h3>
+            <p class="details-info">Artist: {{ vinyl.artist }}</p>
+            <p class="details-info">Label: {{ vinyl.label }}</p>
+            {% if vinyl.original_year %}
+                <p class="details-info">Year: {{ vinyl.original_year }}</p>
+            {% endif %}
+            {% if vinyl.no_songs %}
+                <p class="details-info">Number of songs: {{ vinyl.no_songs }}</p>
+            {% endif %}
+            {% if pet.sex %}
+                <p class="details-info">Sex: {{ pet.sex }}</p>
+            {% endif %}
+            {% if vinyl.edition %}
+                <p class="details-info">Edition: {{ vinyl.edition }}</p>
+            {% endif %}
+            {% if vinyl.condition %}
+                <p class="details-info">Edition: {{ vinyl.condition }}</p>
+            {% endif %}
+
+            <!-- Show the vinyl genres -->
+            {% if vinyl.genre.all %}
+                <p class="details-info">Genres:</p>
+                <ul class="details-info">
+                    {% for genre in vinyl.genre.all %}
+                        <li>{{ genre.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <!-- Show other properties of the vinyl -->
+            <p class="details-info">Submitted on: {{ vinyl.submission_date|date:"M d Y" }}</p>
+            <p class="details-info">Description: {{ vinyl.description }}</p>
+
+        </div>
+
+    </div>
+
+{% endblock %}

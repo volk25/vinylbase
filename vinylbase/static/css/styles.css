@@ -1,0 +1,115 @@
+/* GENERAL +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+html {
+    scroll-behavior: smooth;
+}
+  
+/* Style of the overall body */
+body {
+	padding: 0;
+	margin: 0;
+    background-color: black;
+	font-size: 15px;
+	line-height: 1.5;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+/* NAVBAR +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* Style of the overall navbar */
+.navbar {
+    background: #1e97fa;
+}
+
+/* Style of the navbar brand */
+.navbar-brand {
+    color: #f4f4f4;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 30px;
+}
+.navbar-brand:hover {
+    background: #f4f4f4;
+    color:#1e97fa;
+}
+
+/* HOME PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.home-container {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.home-tile {
+    border: 2px solid #1e97fa;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #1e97fa;
+}
+
+.home-tile a:hover {
+    text-decoration: none;
+}
+
+.home-album {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #f4f4f4;
+}
+
+.home-info {
+    margin-top: -0.8em;
+    color: #f4f4f4;
+}
+
+/* DETAILS PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+.details-tile {
+    border: 2px solid #1e97fa;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: #1e97fa;
+}
+
+.details-album {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #f4f4f4;
+}
+
+.details-info {
+    margin-top: -0.8em;
+    color: #f4f4f4;
+}
+
+/* FOOTER +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* Style of the overall footer */
+footer {
+    background-color: #1e97fa;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Style of the text */
+footer .tools {
+    color: #f4f4f4;
+    font-size: 12px;
+    font-style: italic;
+}
+footer .copyright {
+    color: #f4f4f4;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
