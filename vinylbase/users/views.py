@@ -32,26 +32,27 @@ def user_signup_view(request):
     Signup view.
     """
 
-    # In case of POST request, instantiate the signup form
+    # In case of POST request, create a new User instance
     if request.method == "POST":
         form = UserSignupForm(request.POST)
         if form.is_valid():
 
             # Save the new user without committing, and set to it the password
-            new_user = form.save(commit=False)
+            user = form.save(commit=False)
             cleaned_form = form.cleaned_data
             cleaned_password = cleaned_form['password']
-            new_user.set_password(cleaned_password)
+            user.set_password(cleaned_password)
 
             # Save the new user if the username is unique or render the template for already existing user
             try:
-                new_user.save()
+                user.save()
             except IntegrityError:
-                return render(request, 'users/signup_exist.html', {'new_user': new_user})
+                return render(request, 'users/signup_exist.html', {'new_user': user})
 
             # Render the template and expose to it the queryset
-            return render(request, 'users/signed_up.html', {'new_user': new_user})
+            return render(request, 'users/signed_up.html', {'new_user': user})
 
+    # In case of GET request, instantiate the form
     else:
         form = UserSignupForm()
 
@@ -66,7 +67,7 @@ def user_login_view(request):
     Meant to be an alternative to the built-in LoginView.
     """
 
-    # In case of POST request validate the login form
+    # In case of POST request authenticate the User
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -84,6 +85,7 @@ def user_login_view(request):
             else:
                 return redirect('user_login_invalid')
 
+    # In case of GET request, instantiate the form
     else:
         form = LoginForm()
 
@@ -105,7 +107,7 @@ def user_change_password_view(request):
     Change password view.
     """
 
-    # In case of POST request, instantiate the signup form
+    # In case of POST request, validate the old password and set the new one
     if request.method == "POST":
         form = ChangePasswordForm(request.POST)
         if form.is_valid():
@@ -122,6 +124,7 @@ def user_change_password_view(request):
             request.user.save()
             return redirect('user_password_changed')
 
+    # In case of GET request, instantiate the form
     else:
         form = ChangePasswordForm()
 

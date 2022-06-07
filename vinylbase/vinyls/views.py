@@ -25,7 +25,7 @@ from .forms import VinylCreateForm
 
 def vinyl_list_view(request):
     """
-    Function responsible for rendering the home template (passing data to the template and loading it to the page)
+    Function responsible for rendering the home template.
     """
     vinyls = Vinyl.objects.filter(owner=request.user)
     return render(request, 'vinyls/vinyl_list.html', {'vinyls': vinyls})
@@ -33,8 +33,7 @@ def vinyl_list_view(request):
 
 def vinyl_retrieve_view(request, vinyl_id: int):
     """
-    Function responsible for rendering the vinyl details template (passing data to the template and loading it to the
-    page)
+    Function responsible for rendering the vinyl details template.
     """
     try:
         vinyl = Vinyl.objects.get(owner=request.user, id=vinyl_id)
@@ -48,7 +47,7 @@ def vinyl_create_view(request):
     Vinyl create view.
     """
 
-    # In case of POST request, instantiate the signup form
+    # In case of POST request, create a new Vinyl instance
     if request.method == "POST":
         form = VinylCreateForm(request.POST, request.FILES)
         if form.is_valid():
@@ -61,6 +60,7 @@ def vinyl_create_view(request):
             # Render the template and expose to it the queryset
             return redirect('vinyl_create_success')
 
+    # In case of GET request, instantiate the form
     else:
         form = VinylCreateForm()
 
