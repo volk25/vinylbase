@@ -3,6 +3,15 @@
 <!-- Define the block-content to be loaded into base.html template -->
 {% block content %}
 
+    <!-- Show the vinyl list only to logged-in users -->
+    {% if request.user.is_anonymous %}
+    <div class="container mt-4 text-white">
+        <h1>Only logged-in users can see this page!</h1>
+        <p>You can now <a href="{% url 'user_login' %}">login</a> here</p>
+    </div>
+
+    {% else %}
+
     <!-- Create the vinyl details -->
     <div class="container">
 
@@ -53,5 +62,7 @@
         </div>
 
     </div>
+
+    {% endif %}
 
 {% endblock %}

@@ -1,0 +1,57 @@
+
+<!-- Create the navbar -->
+<nav class="navbar navbar-expand-md">
+
+    <!-- Create a navbar brand -->
+    <a class="navbar-brand h2 ms-5" href="{% url 'vinyl_list' %}">Vinylbase</a>
+
+    <!-- Create a button for toggling the dropdown menu (for menu entries on the right in md) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Create the menu entries to be aligned on the left -->
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav me-auto">
+
+            {% if not request.user.is_anonymous %}
+            <li class="nav-item">
+                <div class="nav-link h5 text-black ms-5 mt-2">Welcome, {{request.user}}</div>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+    <!-- Create the menu entries to be aligned on the right -->
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+
+            {% if not request.user.is_anonymous %}
+            <li class="nav-item h5">
+                <a class="nav-link text-white" href="{% url 'vinyl_create' %}">Add Vinyl</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle h5 text-white me-5" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                <div class="dropdown-menu dropdown-menu-left bg-black" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item text-white" href="{% url 'user_retrieve' %}">View Profile</a>
+                    <a class="dropdown-item text-white" href="{% url 'user_change_password' %}">Change Password</a>
+                    <a class="dropdown-item text-white" href="{% url 'user_logout' %}">Logout</a>
+                </div>
+            </li>
+            {% endif %}
+
+            {% if request.user.is_anonymous %}
+            <li class="nav-item h5">
+                <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
+            </li>
+            <li class="nav-item h5 me-5">
+                <a class="nav-link text-white" href="{% url 'user_signup' %}">Signup</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+</nav>
