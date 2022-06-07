@@ -50,7 +50,7 @@ def user_signup_view(request):
                 return render(request, 'users/signup_exist.html', {'new_user': user})
 
             # Render the template and expose to it the queryset
-            return render(request, 'users/signed_up.html', {'new_user': user})
+            return redirect('user_signup_success')
 
     # In case of GET request, instantiate the form
     else:

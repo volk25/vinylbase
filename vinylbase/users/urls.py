@@ -22,6 +22,8 @@ from . import views
 
 urlpatterns = [
     path('signup/', views.user_signup_view, name='user_signup'),
+    path('signup-success/', TemplateView.as_view(template_name='users/user_signup_success.html'),
+         name='user_signup_success'),
     path('login/', views.user_login_view, name='user_login'),
     path('login-invalid/', TemplateView.as_view(template_name='users/login_invalid.html'),
          name='user_login_invalid'),
