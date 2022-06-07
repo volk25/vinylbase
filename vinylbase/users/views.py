@@ -47,7 +47,7 @@ def user_signup_view(request):
             try:
                 user.save()
             except IntegrityError:
-                return render(request, 'users/signup_exist.html', {'new_user': user})
+                return redirect('user_account_exists')
 
             # Render the template and expose to it the queryset
             return redirect('user_signup_success')
@@ -114,7 +114,7 @@ def user_change_password_view(request):
             cleaned_form = form.cleaned_data
             cleaned_password = cleaned_form['password']
             if not request.user.check_password(cleaned_password):
-                return render(request, 'users/invalid_old_password.html')
+                return redirect('user_invalid_old_password')
 
             # Set the new password and render the template
             cleaned_new_password = cleaned_form['new_password']

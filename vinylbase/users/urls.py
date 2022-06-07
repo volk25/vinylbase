@@ -21,15 +21,28 @@ from . import views
 # ======================================================================================================================
 
 urlpatterns = [
+
+    # Signup operations
     path('signup/', views.user_signup_view, name='user_signup'),
     path('signup-success/', TemplateView.as_view(template_name='users/user_signup_success.html'),
          name='user_signup_success'),
+    path('account-exists/', TemplateView.as_view(template_name='users/user_account_exists.html'),
+         name='user_account_exists'),
+
+    # Login/logout operations
     path('login/', views.user_login_view, name='user_login'),
     path('login-invalid/', TemplateView.as_view(template_name='users/login_invalid.html'),
          name='user_login_invalid'),
     path('logout/', views.user_logout_view, name='user_logout'),
+
+    # Change password operations
     path('change-password/', views.user_change_password_view, name='user_change_password'),
     path('password-changed/', TemplateView.as_view(template_name='users/password_changed.html'),
          name='user_password_changed'),
+    path('invalid-old-password/', TemplateView.as_view(template_name='users/user_invalid_old_password.html'),
+         name='user_invalid_old_password'),
+
+    # Profile retrieving operations
     path('profile/', views.user_retrieve_view, name='user_retrieve'),
+
 ]
