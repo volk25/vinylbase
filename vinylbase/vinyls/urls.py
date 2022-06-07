@@ -26,4 +26,7 @@ urlpatterns = [
     path('create-success/', TemplateView.as_view(template_name='vinyls/vinyl_create_success.html'),
          name='vinyl_create_success'),
     path('<int:vinyl_id>/', views.vinyl_retrieve_view, name='vinyl_retrieve'),
+    path('<int:vinyl_id>/delete/', views.vinyl_delete_view, name='vinyl_delete'),
+    path('delete-success/', TemplateView.as_view(template_name='vinyls/vinyl_delete_success.html'),
+         name='vinyl_delete_success'),
 ]

@@ -51,7 +51,7 @@ class Vinyl(models.Model):
 
     # Relational fields
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
-    genre = models.ManyToManyField(Genre, blank=True, null=True)
+    genre = models.ManyToManyField(Genre, blank=True)
 
     def __str__(self):
         return self.album

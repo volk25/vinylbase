@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Vinyl deleted{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-white">
+    <h1>Vinyl successfully deleted</h1>
+    <p>Click <a href="{% url 'vinyl_list' %}">here</a> to go to the main page</p>
+</div>
+{% endblock %}

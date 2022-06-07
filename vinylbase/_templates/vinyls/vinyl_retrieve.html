@@ -59,6 +59,12 @@
             <p class="details-info">Submitted on: {{ vinyl.submission_date|date:"M d Y" }}</p>
             <p class="details-info">Description: {{ vinyl.description }}</p>
 
+            <!-- Add a delete button-->
+            <form class="text-center" action="{% url 'vinyl_delete' vinyl.id %}">
+                <button type="submit" class="btn btn-danger" value='Delete Vinyl'>Delete Vinyl</button>
+            </form>
+
+
         </div>
 
     </div>

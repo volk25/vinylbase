@@ -25,7 +25,7 @@ from .forms import VinylCreateForm
 
 def vinyl_list_view(request):
     """
-    Function responsible for rendering the home template.
+    Function responsible for rendering the vinyl list template.
     """
     vinyls = Vinyl.objects.filter(owner=request.user)
     return render(request, 'vinyls/vinyl_list.html', {'vinyls': vinyls})
@@ -42,9 +42,21 @@ def vinyl_retrieve_view(request, vinyl_id: int):
     return render(request, 'vinyls/vinyl_retrieve.html', {'vinyl': vinyl})
 
 
+def vinyl_delete_view(request, vinyl_id: int):
+    """
+    Function responsible for deleting a vinyl.
+    """
+    try:
+        vinyl = Vinyl.objects.get(owner=request.user, id=vinyl_id)
+    except Vinyl.DoesNotExist:
+        raise Http404('Vinyl not found')
+    vinyl.delete()
+    return redirect('vinyl_delete_success')
+
+
 def vinyl_create_view(request):
     """
-    Vinyl create view.
+    Function responsible for rendering the vinyl create template.
     """
 
     # In case of POST request, create a new Vinyl instance

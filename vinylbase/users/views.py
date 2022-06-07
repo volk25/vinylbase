@@ -29,7 +29,7 @@ from .forms import UserSignupForm, LoginForm, ChangePasswordForm
 
 def user_signup_view(request):
     """
-    Signup view.
+    Function responsible for rendering the signup template.
     """
 
     # In case of POST request, create a new User instance
@@ -63,8 +63,7 @@ def user_signup_view(request):
 @csrf_exempt
 def user_login_view(request):
     """
-    Login view making use of custom LoginForm.
-    Meant to be an alternative to the built-in LoginView.
+    Function responsible for rendering the login template.
     """
 
     # In case of POST request authenticate the User
@@ -95,8 +94,7 @@ def user_login_view(request):
 
 def user_logout_view(request):
     """
-    Logout view.
-    Meant to be an alternative to the built-in LogoutView.
+    Function responsible for rendering the logout template.
     """
     logout(request)
     return render(request, 'users/logged_out.html')
@@ -104,7 +102,7 @@ def user_logout_view(request):
 
 def user_change_password_view(request):
     """
-    Change password view.
+    Function responsible for rendering the change password template.
     """
 
     # In case of POST request, validate the old password and set the new one
