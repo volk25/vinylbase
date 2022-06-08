@@ -16,6 +16,10 @@ body {
 	background: url("images/background.jpg");
 }
 
+a {
+  text-decoration: none;
+}
+
 .content {
     overflow: hidden;
 }
