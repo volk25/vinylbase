@@ -4,15 +4,21 @@
 
 {% block content %}
 <div class="container mt-4 text-white">
-    <h1>Add Vinyl</h1>
-    <p>Use the following form for adding a vinyl to your collection</p>
 
-    <!--Add a POST form element without any html validation (it will be validated through Django)-->
-    <form action="" enctype='multipart/form-data' method="post" novalidate>
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" value="Add vinyl" class="btn btn-primary">
-    </form>
+    <!-- Create the details tile -->
+    <div class="details-tile">
+
+        <h1>Add Vinyl</h1>
+        <p>Use the following form for adding a vinyl to your collection</p>
+
+        <!--Add a POST form element without any validation-->
+        <form action="" enctype='multipart/form-data' method="post" novalidate>
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="Add vinyl" class="btn btn-primary">
+        </form>
+
+    </div>
 
 </div>
 {% endblock %}

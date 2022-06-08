@@ -27,19 +27,25 @@ def vinyl_list_view(request):
     """
     Function responsible for rendering the vinyl list template.
     """
-    vinyls = Vinyl.objects.filter(owner=request.user)
-    return render(request, 'vinyls/vinyl_list.html', {'vinyls': vinyls})
+    if not request.user.is_anonymous:
+        vinyl_qs = Vinyl.objects.filter(owner=request.user)
+    else:
+        return redirect('home')
+    return render(request, 'vinyls/vinyl_list.html', {'vinyl_qs': vinyl_qs})
 
 
 def vinyl_retrieve_view(request, vinyl_id: int):
     """
     Function responsible for rendering the vinyl details template.
     """
-    try:
-        vinyl = Vinyl.objects.get(owner=request.user, id=vinyl_id)
-    except Vinyl.DoesNotExist:
-        raise Http404('Vinyl not found')
-    return render(request, 'vinyls/vinyl_retrieve.html', {'vinyl': vinyl})
+    if not request.user.is_anonymous:
+        try:
+            vinyl_obj = Vinyl.objects.get(owner=request.user, id=vinyl_id)
+        except Vinyl.DoesNotExist:
+            raise Http404('Vinyl not found')
+    else:
+        return redirect('home')
+    return render(request, 'vinyls/vinyl_retrieve.html', {'vinyl_obj': vinyl_obj})
 
 
 def vinyl_delete_view(request, vinyl_id: int):

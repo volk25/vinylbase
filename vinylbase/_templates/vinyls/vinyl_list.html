@@ -3,18 +3,18 @@
 <!-- Define the block-content to be loaded into base.html template -->
 {% block content %}
 
-    <!-- Show the vinyl list only to logged-in users -->
-    {% if request.user.is_anonymous %}
-    <div class="container mt-4 text-white">
-        <h1>Only logged-in users can see this page!</h1>
-        <p>You can now <a href="{% url 'user_login' %}">login</a> here</p>
+    <!-- If no vinyls have been added yet, notify it to the user -->
+    {% if not vinyl_qs %}
+    <div class="container mt-5">
+        <h1>You have no vinyls in your collection yet...</h1>
+        <p>You can now start adding items <a href="{% url 'vinyl_create' %}">here</a></p>
     </div>
 
     {% else %}
 
     <!-- Set up the grid -->
     <div class="home-container row">
-        {% for vinyl in vinyls %}
+        {% for vinyl_obj in vinyl_qs %}
 
             <!-- Create the bootstrap-grid -->
             <div class="about-left col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
@@ -22,23 +22,23 @@
                 <!-- Create the home tile -->
                 <div class="home-tile">
 
-                    <a href="{% url 'vinyl_retrieve' vinyl.id %}">
+                    <a href="{% url 'vinyl_retrieve' vinyl_obj.id %}">
 
                         <!-- Show the cover picture -->
-                        {% if vinyl.cover %}
+                        {% if vinyl_obj.cover %}
                             <div class="text-center">
-                                <img src="{{ vinyl.cover.url }}" alt="Cover for {{ vinyl.album }}" width="150" height="150">
+                                <img src="{{ vinyl_obj.cover.url }}" alt="Cover for {{ vinyl_obj.album }}" width="150" height="150">
                             </div>
                         {% endif %}
 
                         <!-- Show an anchor tab with the album name -->
-                        <h4 class="home-album text-center">{{ vinyl.album|capfirst }}</h4>
+                        <h4 class="home-album text-center">{{ vinyl_obj.album|capfirst }}</h4>
 
                         <!-- Show some other info about the vinyl -->
-                        <p class="home-info">Artist: {{ vinyl.artist }}</p>
-                        <p class="home-info">Label: {{ vinyl.label }}</p>
-                        {% if vinyl.original_year %}
-                            <p class="home-info">Year: {{ vinyl.original_year }}</p>
+                        <p class="home-info">Artist: {{ vinyl_obj.artist }}</p>
+                        <p class="home-info">Label: {{ vinyl_obj.label }}</p>
+                        {% if vinyl_obj.original_year %}
+                            <p class="home-info">Year: {{ vinyl_obj.original_year }}</p>
                         {% endif %}
 
                     </a>

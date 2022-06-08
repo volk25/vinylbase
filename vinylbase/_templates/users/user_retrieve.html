@@ -19,16 +19,21 @@
         <div class="details-tile">
 
             <!-- Show the main properties of the user -->
-            <h3 class="details-album">Username: {{ user.username }}</h3>
-            {% if user.email %}
-                <h4 class="details-info mt-3">Email: {{ user.email }}</h4>
+            <h3 class="details-album">Username: {{ user_obj.username }}</h3>
+            {% if user_obj.email %}
+                <h4 class="details-info mt-3">Email: {{ user_obj.email }}</h4>
             {% endif %}
             {% if user.first_name %}
-                <h4 class="details-info mt-3">First Name: {{ user.first_name }}</h4>
+                <h4 class="details-info mt-3">First Name: {{ user_obj.first_name }}</h4>
             {% endif %}
-            {% if user.last_name %}
-                <h4 class="details-info mt-3">Last Name: {{ user.last_name }}</h4>
+            {% if user_obj.last_name %}
+                <h4 class="details-info mt-3">Last Name: {{ user_obj.last_name }}</h4>
             {% endif %}
+
+            <!-- Add a delete button-->
+            <form class="text-center" action="{% url 'user_delete' %}">
+                <button type="submit" class="btn btn-danger" value='Delete Profile'>Delete Profile</button>
+            </form>
 
         </div>
 

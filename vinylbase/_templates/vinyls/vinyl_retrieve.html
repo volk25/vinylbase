@@ -3,15 +3,6 @@
 <!-- Define the block-content to be loaded into base.html template -->
 {% block content %}
 
-    <!-- Show the vinyl list only to logged-in users -->
-    {% if request.user.is_anonymous %}
-    <div class="container mt-4 text-white">
-        <h1>Only logged-in users can see this page!</h1>
-        <p>You can now <a href="{% url 'user_login' %}">login</a> here</p>
-    </div>
-
-    {% else %}
-
     <!-- Create the vinyl details -->
     <div class="container">
 
@@ -19,56 +10,50 @@
         <div class="details-tile">
 
             <!-- Show the cover picture -->
-            {% if vinyl.cover %}
+            {% if vinyl_obj.cover %}
                 <div class="text-center">
-                    <img src="{{ vinyl.cover.url }}" alt="Cover for {{ vinyl.album }}" width="400" height="400">
+                    <img src="{{ vinyl_obj.cover.url }}" alt="Cover for {{ vinyl_obj.album }}" width="400" height="400">
                 </div>
             {% endif %}
 
             <!-- Show the main properties of the vinyl -->
-            <h3 class="details-album">Album: {{ vinyl.album|capfirst }}</h3>
-            <p class="details-info">Artist: {{ vinyl.artist }}</p>
-            <p class="details-info">Label: {{ vinyl.label }}</p>
-            {% if vinyl.original_year %}
-                <p class="details-info">Year: {{ vinyl.original_year }}</p>
+            <h3 class="details-album">Album: {{ vinyl_obj.album|capfirst }}</h3>
+            <p class="details-info">Artist: {{ vinyl_obj.artist }}</p>
+            <p class="details-info">Label: {{ vinyl_obj.label }}</p>
+            {% if vinyl_obj.original_year %}
+                <p class="details-info">Year: {{ vinyl_obj.original_year }}</p>
             {% endif %}
-            {% if vinyl.no_songs %}
-                <p class="details-info">Number of songs: {{ vinyl.no_songs }}</p>
+            {% if vinyl_obj.no_songs %}
+                <p class="details-info">Number of songs: {{ vinyl_obj.no_songs }}</p>
             {% endif %}
-            {% if pet.sex %}
-                <p class="details-info">Sex: {{ pet.sex }}</p>
+            {% if vinyl_obj.edition %}
+                <p class="details-info">Edition: {{ vinyl_obj.edition }}</p>
             {% endif %}
-            {% if vinyl.edition %}
-                <p class="details-info">Edition: {{ vinyl.edition }}</p>
-            {% endif %}
-            {% if vinyl.condition %}
-                <p class="details-info">Edition: {{ vinyl.condition }}</p>
+            {% if vinyl_obj.condition %}
+                <p class="details-info">Edition: {{ vinyl_obj.condition }}</p>
             {% endif %}
 
             <!-- Show the vinyl genres -->
-            {% if vinyl.genre.all %}
+            {% if vinyl_obj.genre.all %}
                 <p class="details-info">Genres:</p>
                 <ul class="details-info">
-                    {% for genre in vinyl.genre.all %}
+                    {% for genre in vinyl_obj.genre.all %}
                         <li>{{ genre.name }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
 
             <!-- Show other properties of the vinyl -->
-            <p class="details-info">Submitted on: {{ vinyl.submission_date|date:"M d Y" }}</p>
-            <p class="details-info">Description: {{ vinyl.description }}</p>
+            <p class="details-info">Submitted on: {{ vinyl_obj.submission_date|date:"M d Y" }}</p>
+            <p class="details-info">Description: {{ vinyl_obj.description }}</p>
 
             <!-- Add a delete button-->
-            <form class="text-center" action="{% url 'vinyl_delete' vinyl.id %}">
+            <form class="text-center" action="{% url 'vinyl_delete' vinyl_obj.id %}">
                 <button type="submit" class="btn btn-danger" value='Delete Vinyl'>Delete Vinyl</button>
             </form>
-
 
         </div>
 
     </div>
-
-    {% endif %}
 
 {% endblock %}

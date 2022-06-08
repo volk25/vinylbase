@@ -13,6 +13,7 @@
 
 from django.contrib import admin
 from django.urls import include
+from django.views.generic import TemplateView
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,7 +28,8 @@ urlpatterns = [
     # URLs of Django admin
     path('admin/', admin.site.urls),
 
-    # Definition of URLs of each app
+    # Definition of URLs of each app and for home page
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('users/', include('users.urls')),
     path('vinyls/', include('vinyls.urls')),
 

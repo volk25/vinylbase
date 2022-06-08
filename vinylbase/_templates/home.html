@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Vinylbase{% endblock %}
+
+{% block content %}
+<div id="initial">
+   <div class="container mt-5 text-black">
+        <h1>Welcome to Vinylbase</h1>
+        <h3>Please <a href="{% url 'user_login' %}">login</a> or <a href="{% url 'user_signup' %}">signup</a> to start building your LP collection!</h3>
+    </div>
+</div>
+
+{% endblock %}

@@ -57,7 +57,7 @@ def user_signup_view(request):
         form = UserSignupForm()
 
     # Render the template and expose to it the queryset
-    return render(request, 'users/signup.html', {'form': form})
+    return render(request, 'users/user_signup.html', {'form': form})
 
 
 @csrf_exempt
@@ -75,11 +75,11 @@ def user_login_view(request):
             cleaned_form = form.cleaned_data
             cleaned_username = cleaned_form['username']
             cleaned_password = cleaned_form['password']
-            user = authenticate(request, username=cleaned_username, password=cleaned_password)
+            user_obj = authenticate(request, username=cleaned_username, password=cleaned_password)
 
             # Login the user if the authentication was successful, otherwise render the template for invalid login
-            if user:
-                login(request, user)
+            if user_obj:
+                login(request, user_obj)
                 return redirect('vinyl_list')
             else:
                 return redirect('user_login_invalid')
@@ -89,7 +89,7 @@ def user_login_view(request):
         form = LoginForm()
 
     # Render the template and expose to it the queryset
-    return render(request, 'users/login.html', {'form': form})
+    return render(request, 'users/user_login.html', {'form': form})
 
 
 def user_logout_view(request):
@@ -97,7 +97,7 @@ def user_logout_view(request):
     Function responsible for rendering the logout template.
     """
     logout(request)
-    return render(request, 'users/logged_out.html')
+    return render(request, 'users/user_logout_success.html')
 
 
 def user_change_password_view(request):
@@ -127,11 +127,11 @@ def user_change_password_view(request):
         form = ChangePasswordForm()
 
     # Render the template and expose to it the queryset
-    return render(request, 'users/change_password.html', {'form': form})
+    return render(request, 'users/user_change_password.html', {'form': form})
 
 
 # ======================================================================================================================
-#                                           1. User retrieve views
+#                                           1. User retrieve/delete views
 # ======================================================================================================================
 
 
@@ -139,6 +139,13 @@ def user_retrieve_view(request):
     """
     Function responsible for rendering the user details template.
     """
-    user = request.user
-    return render(request, 'users/user_retrieve.html', {'user': user})
+    user_obj = request.user
+    return render(request, 'users/user_retrieve.html', {'user_obj': user_obj})
 
+
+def user_delete_view(request):
+    """
+    Function responsible for deleting a user profile.
+    """
+    request.user.delete()
+    return redirect('user_delete_success')

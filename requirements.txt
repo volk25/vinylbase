@@ -7,3 +7,4 @@ sqlparse==0.4.2
 asgiref==3.4.1
 setuptools==59.2.0
 python-decouple==3.6
+psycopg2==2.9.3

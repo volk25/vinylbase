@@ -71,7 +71,11 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = '_project.wsgi.application'
 
-# Database
+# ----------------------------------------------------------------------------------------------------------------------
+# DATABASE SETTINGS
+# IMPORTANT: use only one of these databases
+
+# Database (SQLite)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -79,6 +83,19 @@ DATABASES = {
     }
 }
 
+# Database (PostgreSQL)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': f'{config('NAME')}',
+#         'USER': f'{config('USER')}',
+#         'PASSWORD': f'{config('PASSWORD')}',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+# ----------------------------------------------------------------------------------------------------------------------
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile deleted{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>User Profile successfully deleted</h1>
+    <p>We are sorry to see you go, and we hope to see you back soon.</p>
+    <p>Click <a href="{% url 'vinyl_list' %}">here</a> to go to the main page.</p>
+</div>
+{% endblock %}
